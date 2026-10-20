@@ -32,6 +32,9 @@ export class ThrottlerService implements OnModuleInit {
     ) {}
 
     async onModuleInit(): Promise<any> {
+        if (!this.option.isEnable) {
+            return;
+        }
         await this.loadLuaScript();
         this.redis.on('ready', async () => {
             await this.loadLuaScript();

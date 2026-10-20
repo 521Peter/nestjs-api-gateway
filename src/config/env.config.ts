@@ -29,12 +29,12 @@ function buildRedisTls(): ConnectionOptions | undefined {
  * `directPrefixes` (optional) are forwarded to the service WITHOUT stripping the prefix.
  */
 const apiServices: ApiServiceDetail[] = [
-    {
-        prefix: 'user-service',
-        docUrl: 'http://localhost:4020/documents-json',
-        host: new URL('http://localhost:4020/documents-json').origin,
-        directPrefixes: ['oauth', 'oidc']
-    }
+    // {
+    //     prefix: 'user-service',
+    //     docUrl: 'http://localhost:4020/documents-json',
+    //     host: new URL('http://localhost:4020/documents-json').origin,
+    //     directPrefixes: ['oauth', 'oidc']
+    // }
 ];
 
 export const env = {

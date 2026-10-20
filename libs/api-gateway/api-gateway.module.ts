@@ -19,6 +19,9 @@ export class ApiGatewayModule {
         const redisProvider = {
             provide: REDIS_OPTION,
             useFactory: () => {
+                if (!option.throttler.isEnable) {
+                    return null;
+                }
                 return new Redis({
                     host: option.redis?.host,
                     port: option.redis?.port,

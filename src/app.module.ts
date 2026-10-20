@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller.js';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ApiGatewayModule } from '../libs/api-gateway/index.js';
-import { redisConfig } from './config/redis.config.js';
 import { AuthenticationMiddleware } from './middleware/authentication.middleware.js';
 import { StaticRequestMiddleware } from './middleware/static-request.middleware.js';
 import { WsAuthenticationMiddleware } from './middleware/ws-authentication.middleware.js';
@@ -11,7 +10,6 @@ import { env } from './config/env.config.js';
 
 @Module({
     imports: [
-        redisConfig,
         ScheduleModule.forRoot(),
         ApiGatewayModule.forRoot({
             apiServices: env.API_SERVICES,
@@ -23,7 +21,7 @@ import { env } from './config/env.config.js';
                 globalIpRateLimitTTL: 60,
                 globalCustomRateLimit: 60,
                 globalCustomRateLimitTTL: 60,
-                isEnable: true,
+                isEnable: false,
                 keyResolver: ({ request }) => {
                     if (request.url === '/health') {
                         return null;
