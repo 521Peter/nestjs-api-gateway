@@ -9,6 +9,11 @@ import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 export class AppController {
     constructor(private openApiService: OpenApiService) {}
 
+    @Get('health')
+    health() {
+        return { status: 'ok' };
+    }
+
     @Get()
     @ApiRateLimit(5, 60, 200)
     @ApiOperation({ summary: 'Health/root endpoint', description: 'Returns the API Gateway banner string.' })

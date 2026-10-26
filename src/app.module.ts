@@ -7,9 +7,11 @@ import { StaticRequestMiddleware } from './middleware/static-request.middleware.
 import { WsAuthenticationMiddleware } from './middleware/ws-authentication.middleware.js';
 import { McpAuthenticationMiddlewareImpl } from './middleware/mcp-authentication.middleware.js';
 import { env } from './config/env.config.js';
+import { LlmModule } from './llm/llm.module.js';
 
 @Module({
     imports: [
+        LlmModule,
         ScheduleModule.forRoot(),
         ApiGatewayModule.forRoot({
             apiServices: env.API_SERVICES,
@@ -48,7 +50,7 @@ import { env } from './config/env.config.js';
                 pipelining: 1
             },
             mcp: {
-                enabled: true
+                enabled: false
             }
         })
     ],
