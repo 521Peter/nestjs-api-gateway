@@ -32,7 +32,9 @@
         "@modelcontextprotocol/sdk": "^1.30.0",
         "camelcase-keys": "^10.0.2",
         "es-toolkit": "1.52.0",
-        "undici": "^8.10.0"
+        "nest-zod": "^2.1.1",
+        "undici": "^8.10.0",
+        "zod": "^4.6.7"
     },
     "devDependencies": {
         "@hodfords/nestjs-eslint-config": "^11.0.4",

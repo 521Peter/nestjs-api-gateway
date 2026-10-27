@@ -1,4 +1,7 @@
-import { Body, Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post } from '@nestjs/common';
+import { ZBody } from 'nest-zod/swagger';
+import { ValidationPipe } from '~pipe/validation.pipe.js';
+import { llmSchema, LlmSchemaDto } from '~schema/llm.schema.js';
 
 @Controller('v1')
 export class LlmController {
@@ -11,7 +14,7 @@ export class LlmController {
 
     @Post('chat')
     @HttpCode(200)
-    async chat(@Body('model') model: string) {
-        return { receivedModel: model };
+    async chat(@ZBody(llmSchema, ValidationPipe) body: LlmSchemaDto) {
+        return { receivedModel: body.model };
     }
 }
