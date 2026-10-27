@@ -47,5 +47,13 @@ export const env = {
         USERNAME: process.env.REDIS_USERNAME, //Redis username (ACL)
         PASSWORD: process.env.REDIS_PASSWORD, //Redis password
         TLS: buildRedisTls() //Redis TLS options, undefined when REDIS_TLS is not "true"
+    },
+    LLM: {
+        KEY: {
+            OPENAI_API_KEY: process.env.OPENAI_API_KEY ?? '',
+            GLM_API_KEY: process.env.GLM_API_KEY ?? '',
+            COMMAND_CODE_API_KEY: process.env.COMMAND_CODE_API_KEY ?? '',
+            DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY ?? ''
+        }
     }
 };
