@@ -1,16 +1,16 @@
 import { z } from 'zod';
 
-export const chatMessageSchema = z.object({
+export const chatMessageSchema = z.strictObject({
     role: z.enum(['system', 'user', 'assistant', 'tool']),
     content: z.string()
 });
 
-export const chatSchema = z.object({
-    model: z.string().min(1),
+// 如果有多余的参数，不会自动丢弃
+export const chatSchema = z.strictObject({
+    provider: z.string().min(1),
     messages: z.array(chatMessageSchema).min(1),
-    stream: z.boolean().optional(),
+    // stream: z.boolean().optional(),
     temperature: z.number().optional(),
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     max_tokens: z.int().positive().optional()
 });
 

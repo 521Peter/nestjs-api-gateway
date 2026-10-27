@@ -3,7 +3,7 @@ import { PROVIDER_CATALOG } from '~config/llm.config.js';
 
 @Injectable()
 export class LlmService {
-    async resolveModel(id: string) {
+    resolveProvider(id: string) {
         return PROVIDER_CATALOG[id];
     }
 }

@@ -10,9 +10,12 @@ import type { z } from 'zod';
  */
 export function toValidationMessage(error: z.ZodError): string {
     const messages = error.issues.map((issue) => {
+        // strictObject 拦截多余参数时 zod 给的是英文的 Unrecognized key，这里统一转成中文
+        const message =
+            issue.code === 'unrecognized_keys' ? `不支持额外参数：${issue.keys.join('、')}` : issue.message;
         const path = issue.path.join('.');
 
-        return path ? `${path} ${issue.message}` : issue.message;
+        return path ? `${path} ${message}` : message;
     });
 
     return `参数校验失败：${[...new Set(messages)].join('；')}`;
