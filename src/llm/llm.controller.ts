@@ -1,12 +1,14 @@
-import { Body, Controller, Get, HttpCode, NotFoundException, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, NotFoundException, Post, UseGuards } from '@nestjs/common';
 import { ZBody } from 'nest-zod/swagger';
 import z from 'zod';
 import { PROVIDER_CATALOG } from '~config/llm.config.js';
 import { ValidationPipe } from '~pipe/validation.pipe.js';
 import { chatSchema, ChatSchemaDto } from '~schema/llm.schema.js';
 import { LlmService } from './llm.service.js';
+import { AuthGuard } from '~guard/auth.guard.js';
 
 @Controller('v1')
+@UseGuards(AuthGuard)
 export class LlmController {
     constructor(private llmService: LlmService) {}
 

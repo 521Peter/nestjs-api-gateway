@@ -55,5 +55,6 @@ export const env = {
             COMMAND_CODE_API_KEY: process.env.COMMAND_CODE_API_KEY ?? '',
             DEEPSEEK_API_KEY: process.env.DEEPSEEK_API_KEY ?? ''
         }
-    }
+    },
+    AUTH_TOKEN: process.env.AUTH_TOKEN ?? 'local-market-token'
 };
