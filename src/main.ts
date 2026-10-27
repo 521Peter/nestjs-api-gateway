@@ -5,6 +5,7 @@ import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { env } from './config/env.config.js';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { json } from 'express';
 
 const currentDir = dirname(fileURLToPath(import.meta.url));
 
@@ -13,9 +14,11 @@ const currentDir = dirname(fileURLToPath(import.meta.url));
  * set up view directories, static assets, CORS (Cross-Origin Resource Sharing) settings, and start the application server
  */
 async function bootstrap(): Promise<void> {
+    // 禁用请求体中间件，只对v1的请求体做json解析
     const app = await NestFactory.create<NestExpressApplication>(AppModule, {
         bodyParser: false
     });
+    app.use('/v1', json({ limit: '1mb' }));
     app.setBaseViewsDir(join(currentDir, 'views'));
     app.useStaticAssets(join(currentDir, 'statics'), { prefix: '/statics' });
     app.setViewEngine('hbs');
